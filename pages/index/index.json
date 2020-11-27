@@ -1,0 +1,8 @@
+{
+  "usingComponents":{
+    "van-search":"../../miniprogram_npm/@vant/weapp/search/index",
+    "van-swipe-cell":"../../miniprogram_npm/@vant/weapp/swipe-cell/index"
+  },
+  "navigationBarTitleText":"首页"
+
+}
