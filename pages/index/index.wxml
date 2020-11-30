@@ -1,6 +1,6 @@
 <!-- 搜索栏 -->
-<!-- <van-search 
-value="{{ value }}" 
+<van-search 
+value="{{ search_value }}" 
 placeholder="请输入搜索关键词" 
 use-action-slot
 bind:search="onSearch"
@@ -8,18 +8,77 @@ bind:change="onChange"
 shape="round"
 >
     <view slot="action" bind:tap="onClick">搜索</view>
-</van-search> -->
+</van-search>
 
-<van-swipe-cell
-  id="swipe-cell2"
-  right-width="{{ 65 }}"
-  left-width="{{ 65 }}"
-  name="示例"
-  bind:open="onOpen"
+<!-- 轮播图 -->
+<view 
+class="page-section page-section-spacing swiper" 
 >
-  <view slot="left" class="van-swipe-cell__left">选择</view>
-  <van-cell-group>
-    <van-cell title="单元格" value="内容" />
-  </van-cell-group>
-  <view slot="right" class="van-swipe-cell__right">删除</view>
-</van-swipe-cell>
+  <swiper 
+  id="banner" 
+  indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" 
+  interval="{{interval}}" 
+  duration="{{duration}}"
+  >
+    <block 
+    wx:for="{{background}}" 
+    wx:key="*this"  
+    >
+      <swiper-item>
+        <image 
+        class="banner_image" 
+        src="{{item}}" 
+        class="slide-image" 
+        />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!-- 商品导航栏 -->
+<van-grid column-num="3" border="{{ false }}"  >
+    <van-grid-item use-slot wx:for="{{image_icon}}" wx:key='*this'>
+    <image
+      style="width: 100%; height: 90px;"
+      src="/static/img/icons/{{item}}.svg"
+      style="height:45px;width:45px"
+    />
+    <text>{{item}}</text>
+  </van-grid-item>
+</van-grid>
+
+<!-- 下划线 -->
+<van-divider id="divider" />
+
+<!-- 倒计时 -->
+<van-row>
+  <text id="count_down_text">限时特惠</text>
+  <van-count-down id="count_down" use-slot time="{{ time }}" bind:change="time_onChange">
+    <text class="time">{{ timeData.hours }}</text>
+    <text class="time_point">:</text>
+    <text class="time">{{ timeData.minutes }}</text>
+    <text class="time_point">:</text>
+    <text class="time">{{ timeData.seconds }}</text>
+  </van-count-down>
+</van-row>
+
+<!-- 特惠商品 -->
+<block wx:for="{{goods_dic_list}}" wx:key="unique" >
+   <van-card 
+    num="1"
+    tag="特价"
+    price="10.00"
+    desc="销量：{{item.goods_sell_volume}}"
+    title="{{item.goods_name}}"
+    thumb="http://106.54.70.248:8000/static/{{ item.goods_image }}"
+    origin-price="{{item.goods_sell_price}}"
+    id="{{item.id}}"
+  >
+    <view slot="footer">
+      <van-button size="mini">按钮</van-button>
+      <van-button size="mini">按钮</van-button>
+    </view>
+  </van-card> 
+</block>
+
