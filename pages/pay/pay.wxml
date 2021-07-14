@@ -1,0 +1,156 @@
+<!--pages/pay/pay.wxml-->
+<!-- <text>pages/pay/pay.wxml</text> -->
+<!-- 滚动播放 -->
+<!-- <van-notice-bar
+  left-icon="volume-o"
+  text="汤圆可直接下单预定，亲故玛特将会在25号，26号陆续送到您手中，祝您元宵节快乐！"
+/> -->
+
+<!-- 显示地址信息 -->
+<van-cell title="收件信息：" bind:click="address_change"  center is-link use-label-slot>
+    <view slot="label" >
+        <view>姓名：<text>{{consignee_name}}</text></view>
+        <view>电话：<text>{{consignee_number}}</text></view>
+        <view>地址：<text>{{consignee_address}}</text></view>
+    </view>
+</van-cell>
+
+<view style="margin-top:1rem"></view>
+
+
+<view>
+  <!-- 显示特价信息 -->
+  <block wx:for="{{goods_preferential}}" wx:key="unique">
+      <van-card 
+          tag="特价"
+          num="{{ item.cart_goods_quantity }}"
+          price="{{item.goods_preferential_price}}"
+          title="{{item.goods_name}}"
+          thumb="{{ item.goods_image }}"
+          origin-price="{{item.goods_sell_price}}" 
+          slot="content"
+        >
+      </van-card>
+  </block>
+  <!-- 显示商品信息 -->
+  <block wx:for="{{goods_dic_list}}" wx:key="unique">
+      <!-- 右侧商品卡片 -->
+      <van-card
+      num="{{ item.cart_goods_quantity }}"
+      price="{{ item.goods_sell_price }}"
+      title="{{item.goods_name}}"
+      thumb="{{ item.goods_image }}"
+      slot="content"
+      >
+      </van-card>
+  </block>
+  <van-field
+    model:value="{{ value_remark }}"
+    placeholder="请输入备注信息"
+    maxlength='40'
+    type='textarea'
+    autosize
+    show-word-limit
+    border="{{ false }}"
+    label="备注:"
+    bind:blur="submit_remark"
+  />
+</view>
+<view style="margin-top:1rem"></view>
+
+<!-- 单元格组 -->
+<van-cell-group  >
+  <van-cell title="商品金额" size="large">
+    <view slot=""  size="large">
+        <text>₩{{sum}}</text>
+    </view>
+  </van-cell>
+  <van-cell title="运费">
+    <view slot="" style="color:{{freight_color}}" size="large">
+      <text>₩{{freight}}</text>
+    </view>
+  </van-cell> 
+  <!-- <van-cell title="优惠券" value="无可用" is-link /> -->
+  <van-cell title="积分减免"  is-link bindtap="show_popup_integral" >
+    <view slot="" style="color:{{text_color}}" size="large">
+        <text>{{integral_number}}</text>
+    </view>
+  </van-cell>  
+  <!-- <van-cell title="礼品卡" value="无可用" is-link /> -->
+  <van-cell title="活动优惠"  is-link>
+    <view slot="" style="color:{{dicount_amount_color}}" size="large">
+        <text>{{dicount_amount}}</text>
+    </view>
+  
+  </van-cell> 
+  <van-cell>
+    <view slot="" size="large">
+        <text>合计：</text><text style="color:#EE0A24">₩{{sum_price}}</text>
+    </view>
+  </van-cell> 
+</van-cell-group>
+
+<view style="margin-top:1rem"></view>
+<van-cell title="期望配送时间" value="{{expected_time_name}}" bindtap="expected_time_show" is-link />
+<van-cell title="支付方式" value="{{payment_name}}" bindtap="pay_select" is-link />
+
+
+<van-submit-bar
+  price="{{ sum_price*100 }}"
+  button-text="提交订单"
+  bind:submit="submit_order"
+  tip="{{ true }}"
+>
+  <!-- <view slot="tip">您的收货地址不支持同城送, <text>修改地址</text></view> -->
+</van-submit-bar>
+
+
+<!-- 选择使用积分 -->
+<van-popup 
+  show="{{ show_popup_integral }}" 
+  round
+  closeable
+  position="bottom"
+  bind:click-overlay="click_overlay"
+  bind:close="click_overlay"
+  custom-style="height: 20%;padding-top:50rpx"
+>
+
+  <van-cell-group >
+    <van-cell title="积分数" center use-label-slot >
+      <van-stepper slot="" value="{{use_integral_number}}"  integer min="0"  max="{{max_integral}}" step="100" bind:change="calculate_amount" />
+      <view slot="label">
+        <text>可节省:₩{{ save_amount }}</text>
+      </view>
+    </van-cell>
+    <van-button id="use_integral_button" type="danger" bind:click="use_integral" block square>确定</van-button>
+  </van-cell-group>
+</van-popup>
+
+
+
+<!-- 期望配送时间 -->
+<van-action-sheet
+  show="{{ expected_time_show }}"
+  actions="{{ expected_time_select }}"
+  bind:close="onClose"
+  bind:select="expected_time_select"
+/>
+
+<!-- 支付方式选择 -->
+<van-action-sheet
+  show="{{ show }}"
+  actions="{{ payment_method_select }}"
+  bind:close="onClose"
+  bind:select="pay_method_select"
+/>
+
+<!-- 轻提示 -->
+<van-toast id="van-toast" duration='2500' />
+<!-- 通知 -->
+<van-notify id="van-notify" />
+
+
+
+<view style="height:5rem"></view>
+

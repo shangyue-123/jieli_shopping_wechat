@@ -10,9 +10,17 @@
     "van-panel": "../../miniprogram_npm/@vant/weapp/panel/index",
     "van-row": "../../miniprogram_npm/@vant/weapp/row/index",
     "van-col": "../../miniprogram_npm/@vant/weapp/col/index",
-    "van-card": "../../miniprogram_npm/@vant/weapp/card/index"
+    "van-card": "../../miniprogram_npm/@vant/weapp/card/index",
+    "van-popup": "../../miniprogram_npm/@vant/weapp/popup/index",
+    "van-cell": "../../miniprogram_npm/@vant/weapp/cell/index",
+    "van-cell-group": "../../miniprogram_npm/@vant/weapp/cell-group/index",
+    "van-button": "../../miniprogram_npm/@vant/weapp/button/index",
+    "van-notice-bar": "../../miniprogram_npm/@vant/weapp/notice-bar/index"
+
+
 
   },
   "navigationBarTitleText":"首页"
+
  
 }

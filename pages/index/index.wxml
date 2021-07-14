@@ -1,13 +1,18 @@
+
+<!-- <van-notice-bar
+  left-icon="volume-o"
+  text="汤圆可直接下单预定，亲故玛特将会在25号，26号陆续送到您手中，祝您元宵节快乐！"
+/> -->
 <!-- 搜索栏 -->
 <van-search 
 value="{{ search_value }}" 
 placeholder="请输入搜索关键词" 
 use-action-slot
-bind:search="onSearch"
-bind:change="onChange"
+bind:focus = "toSearch"
 shape="round"
+focus="{{focus}}"
 >
-    <view slot="action" bind:tap="onClick">搜索</view>
+    <view slot="action" bind:tap="toSearch" >搜索</view>
 </van-search>
 
 <!-- 轮播图 -->
@@ -29,7 +34,8 @@ class="page-section page-section-spacing swiper"
         <image 
         class="banner_image" 
         src="{{item}}" 
-        class="slide-image" 
+        class="slide-image"
+        bindtap="banner_{{index}}" 
         />
       </swiper-item>
     </block>
@@ -38,14 +44,15 @@ class="page-section page-section-spacing swiper"
 
 <!-- 商品导航栏 -->
 <van-grid column-num="3" border="{{ false }}"  >
-    <van-grid-item use-slot wx:for="{{image_icon}}" wx:key='*this'>
-    <image
-      style="width: 100%; height: 90px;"
-      src="/static/img/icons/{{item}}.svg"
-      style="height:45px;width:45px"
-    />
-    <text>{{item}}</text>
-  </van-grid-item>
+  <block wx:for="{{image_icon}}" wx:key='unique'>
+    <van-grid-item use-slot data-goods_category="{{item.goods_category}}" bind:click="toGoods">
+      <image
+        src="{{item.url}}"
+        style="height:80rpx;width:80rpx"
+      />
+      {{item.text}}
+    </van-grid-item>
+  </block>
 </van-grid>
 
 <!-- 下划线 -->
@@ -54,7 +61,7 @@ class="page-section page-section-spacing swiper"
 <!-- 倒计时 -->
 <van-row>
   <text id="count_down_text">限时特惠</text>
-  <van-count-down id="count_down" use-slot time="{{ time }}" bind:change="time_onChange">
+  <van-count-down id="count_down" use-slot time="{{ time }}" bind:change="time_onChange" bind:finish='time_finish'>
     <text class="time">{{ timeData.hours }}</text>
     <text class="time_point">:</text>
     <text class="time">{{ timeData.minutes }}</text>
@@ -67,18 +74,25 @@ class="page-section page-section-spacing swiper"
 <block wx:for="{{goods_dic_list}}" wx:key="unique" >
    <van-card 
     num="1"
-    tag="特价"
-    price="10.00"
-    desc="销量：{{item.goods_sell_volume}}"
+    tag="{{item.tag}}"
+    price="{{item.goods_preferential_price}}"
     title="{{item.goods_name}}"
-    thumb="http://106.54.70.248:8000/static/{{ item.goods_image }}"
+    thumb="{{ item.goods_image }}"
     origin-price="{{item.goods_sell_price}}"
-    id="{{item.id}}"
   >
+
+    <view slot='desc' style="color:#646566">
+            <view>销量:{{ item.goods_sell_volume }}</view>
+            <view>库存:{{ item.goods_inventory }}</view>
+          </view>
     <view slot="footer">
-      <van-button size="mini">按钮</van-button>
-      <van-button size="mini">按钮</van-button>
+      <button size="mini" disabled='{{item.button_disabled}}' type="warn" bindtap="add_cart" id="{{item.id}}">加入购物车</button>
     </view>
   </van-card> 
 </block>
+
+
+<!-- 轻提示 -->
+<van-toast id="van-toast" />
+<view style="height:5rem"></view>
 

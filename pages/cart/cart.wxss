@@ -1,1 +1,13 @@
 /* pages/cart/cart.wxss */
+.checkbox{
+    float: left; 
+    margin-top:89rpx;
+    padding-left: 35rpx;
+}
+.card{
+    padding-left: 70rpx;
+}
+.van-submit-bar{
+    position: fixed!important;
+    bottom: 3rem!important;
+}

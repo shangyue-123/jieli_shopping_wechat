@@ -1,0 +1,17 @@
+/* pages/address_list/address_list.wxss */
+#new_address{
+    position: fixed!important;
+    bottom: 0!important;
+    width: 100%;
+}
+.van-cell{
+    border-bottom: solid 1px #969799 !important;
+
+}
+.van-cell-group__title{
+    color: black !important; 
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    border-bottom: solid 1px #969799 !important;
+
+}

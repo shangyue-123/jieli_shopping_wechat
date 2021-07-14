@@ -1,0 +1,13 @@
+/* pages/pay/pay.wxss */
+/* card:{
+    margin-top: ;
+} */
+.van-submit-bar__text{
+    text-align: left!important;
+}
+
+#use_integral_button{
+    position: fixed!important;
+    bottom: 0!important;
+    width: 100%!important;
+}

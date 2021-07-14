@@ -1,0 +1,84 @@
+<!-- <van-notice-bar
+  left-icon="volume-o"
+  text="汤圆可直接下单预定，亲故玛特将会在25号，26号陆续送到您手中，祝您元宵节快乐！"
+/> -->
+
+<van-tree-select
+  items="{{ items }}"
+  main-active-index="{{ goods_category }}"
+  height="100%"
+  bind:click-nav="onClickNav"
+>
+  <van-search 
+  value="{{ search_value }}" 
+  placeholder="请输入搜索关键词" 
+  use-action-slot
+  bind:focus = "toSearch"
+  background="#f7f8fa"
+  shape="round"
+  focus="{{focus}}"
+  slot="content"
+  >
+    <view slot="action" bind:tap="toSearch" >搜索</view>
+  </van-search>
+
+
+
+  
+
+  <!-- 显示商品 -->
+  <!-- 显示特价商品 -->
+  <block wx:for="{{goods_dic_list}}" wx:key="unique">
+    <block wx:if="{{item.tag == '特价'}}" >
+      <van-card 
+        num="1"
+        tag="{{item.tag}}"
+        price="{{item.goods_preferential_price}}"
+        title="{{item.goods_name}}"
+        thumb="{{ item.goods_image }}"
+        origin-price="{{item.goods_sell_price}}"
+        slot="content"
+        lazy-load="true"
+        bindtap="to_goods_detail"
+        data-goods_id="{{item.id}}"
+      >
+        <view slot='desc' style="color:#646566">
+            <view>销量:{{ item.goods_sell_volume }}</view>
+            <view>库存:{{ item.goods_inventory }}</view>
+        </view>
+        <view slot="footer">
+          <button size="mini" disabled='{{item.button_disabled}}' type="warn" bindtap="add_cart" id="{{item.id}}">加入购物车</button>
+        </view>
+      </van-card> 
+    </block>
+    <!-- 其他商品 -->
+    <block wx:else>
+        <van-card
+        num="1"
+        tag="{{item.tag}}"
+        price="{{ item.goods_sell_price }}"
+        title="{{item.goods_name}}"
+        thumb="{{ item.goods_image }}"
+        slot="content"
+        lazy-load="true"
+        bindtap="to_goods_detail"
+        data-goods_id="{{item.id}}"
+        >
+        <view slot='desc' style="color:#646566">
+          <view>销量:{{ item.goods_sell_volume }}</view>
+          <view>库存:{{ item.goods_inventory }}</view>
+        </view>
+        <view slot="footer">
+          <button size="mini" disabled='{{item.button_disabled}}' type="warn" bindtap="add_cart" id="{{item.id}}">加入购物车</button>
+        </view>
+        </van-card>
+    </block>
+  </block>
+
+</van-tree-select>
+
+<!-- 轻提示 -->
+<van-toast id="van-toast" />
+
+
+<view style="height:5rem"></view>

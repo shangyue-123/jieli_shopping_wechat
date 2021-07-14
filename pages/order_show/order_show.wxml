@@ -1,0 +1,69 @@
+<!--pages/order_show/order_show.wxml-->
+<!-- <text>pages/order_show/order_show.wxml</text> -->
+
+<block wx:for="{{order_dic_arr}}" wx:key="unique">
+<!-- 显示商品信息 -->
+<van-cell-group>
+    <van-cell  value="{{item.order_status_text}}">
+        <text slot="title" style="color:#dc3545">自营</text>
+    </van-cell>
+    <block wx:for="{{item.goods_json}}"wx:key="unique" wx:for-item="goods_json">
+        <block wx:if="{{goods_json.goods_preferential}}">
+            <van-cell>
+                <view slot="title">
+                    <van-card
+                        num="{{goods_json.cart_goods_quantity}}"
+                        tag="特价"
+                        price="{{goods_json.goods_preferential_price}}"
+                        title="{{goods_json.goods_name}}"
+                        thumb="{{ goods_json.goods_image }}"
+                        origin-price="{{goods_json.goods_sell_price}}"
+                        slot="content"
+                    />
+                </view>
+            </van-cell>
+        </block>
+        <block wx:else>
+            <van-cell>
+                <view slot="title">
+                    <van-card
+                        num="{{goods_json.cart_goods_quantity}}"
+                        price="{{goods_json.goods_sell_price}}"
+                        title="{{goods_json.goods_name}}"
+                        thumb="{{ goods_json.goods_image }}"
+                        slot="content"
+                    />
+                </view>
+            </van-cell>
+        </block>
+    </block>
+    <van-cell>
+        <view class="text_left" slot='title' >
+            <text>总价为:₩</text>
+            <text>{{item.sum_price}}</text>   
+        </view>
+        <view class="text_right" slot='' >
+            <text>折后价:₩</text>
+            <text>{{item.payment_amount}}</text>
+        </view>
+    </van-cell>
+    
+    <van-cell >
+        <view slot="title" class="select_button">
+            <!-- 右侧按钮 -->
+            <van-button   type="info"   bind:click="button_right" data-order_index ="{{index}}" data-order_status="{{item.order_status}}" data-order_id="{{item.id}}" plain custom-style="margin: 6rpx 0 6rpx 0;display:{{item.button_right_show}};float: right;width: 200rpx;">{{item.button_right}}</van-button>
+
+            <!-- 左侧按钮 -->
+            <van-button  type="danger" data-order_status="{{item.order_status}}"
+            data-order_id="{{item.id}}" bind:click="button_left" plain  custom-style="  margin: 6rpx 12rpx 6rpx 0;display:{{item.button_left_show}};float: right;width: 200rpx;" >{{item.button_left}}</van-button>
+        </view>
+    </van-cell>
+    <van-divider /> 
+</van-cell-group>
+</block>
+<!-- 轻提示 -->
+<van-toast id="van-toast" />
+<van-notify id="van-notify" />
+
+<!-- 弹窗 -->
+<van-dialog id="van-dialog" />

@@ -1,0 +1,35 @@
+<!--pages/integral_show/integral_show.wxml-->
+<!-- <text>pages/integral_show/integral_show.wxml</text> -->
+<!-- 显示积分数 -->
+<van-cell>
+    <view slot="icon" style="margin-right:20rpx">
+        <van-icon name="{{image_src}}" size="60rpx" />
+    </view>
+    <view slot="title" style="color:#dc3545;font-weight:bold;margin-top:8rpx">{{integral_number}}</view>
+    <!-- 以后开发 -->
+    <!-- <view slot="">
+        <van-button color="linear-gradient(to right, #4bb0ff, #6149f6)">
+            签到获取积分
+        </van-button>
+    </view> -->
+</van-cell>
+
+<!-- 显示积分列表 -->
+<van-cell-group>
+<block wx:for="{{integral_list}}" wx:key="unique">
+  <van-cell title="{{item.change_reason_text}}" use-label-slot>
+      <view slot=''>
+          {{item.change}}
+      </view>
+      <view slot='label'>
+          {{item.date}}
+      </view>
+  </van-cell> 
+</block>
+</van-cell-group>
+
+
+
+
+
+

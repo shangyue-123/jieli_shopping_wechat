@@ -1,0 +1,79 @@
+<!--pages/search/search.wxml-->
+<!-- <text>pages/search/search.wxml</text> -->
+<van-search 
+value="{{ search_input }}" 
+placeholder="请输入搜索关键词"
+focus="{{search_focus}}" 
+use-action-slot
+bind:search="search"
+bind:change="search_change"
+shape="round"
+>
+    <view slot="action" bind:tap="search">搜索</view>
+</van-search>
+<!-- 显示特价商品 -->
+
+<block wx:for="{{goods_preferential}}" wx:key="unique">
+    <van-card 
+      num="1"
+      tag="{{item.tag}}"
+      price="{{item.goods_preferential_price}}"
+      title="{{item.goods_name}}"
+      thumb="{{ item.goods_image }}"
+      origin-price="{{item.goods_sell_price}}"
+      slot="content"
+    >
+
+    <view slot='desc' style="color:#646566">
+            <view>销量:{{ item.goods_sell_volume }}</view>
+            <view>库存:{{ item.goods_inventory }}</view>
+        </view>
+      <view slot="footer">
+        <button size="mini" disabled='{{item.button_disabled}}' type="warn" bindtap="add_cart" id="{{item.id}}">加入购物车</button>
+      </view>
+    </van-card> 
+</block>
+
+<!-- 显示商品 -->
+<block wx:for="{{goods_dic_list}}" wx:key="unique">
+      <van-card
+      num="1"
+      tag="{{item.tag}}"
+      price="{{ item.goods_sell_price }}"
+      title="{{item.goods_name}}"
+      thumb="{{ item.goods_image }}"
+      slot="content"
+      >
+
+      <view slot='desc' style="color:#646566">
+            <view>销量:{{ item.goods_sell_volume }}</view>
+            <view>库存:{{ item.goods_inventory }}</view>
+        </view>
+
+      <view slot="footer">
+        <button size="mini" disabled='{{item.button_disabled}}' type="warn" bindtap="add_cart" id="{{item.id}}">加入购物车</button>
+      </view>
+      </van-card>
+</block>
+
+<van-button type="danger" block bind:click="toCart" custom-style="position: fixed;bottom: 0">去购物车结算</van-button>
+
+<!-- 轻提示 -->
+<van-toast id="van-toast" />
+<view style="height:5rem"></view>
+
+
+
+<!-- 弹出框 -->
+<van-dialog
+  use-slot
+  title="请先授权登陆"
+  show="{{ dialog_show }}"
+  show-cancel-button
+  confirm-button-open-type="getUserInfo"
+  confirmButtonText="授权"
+  bind:close="dialog_close"
+  bind:getuserinfo="bindGetUserInfo"
+>
+</van-dialog>
+

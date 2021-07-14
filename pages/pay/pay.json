@@ -1,0 +1,18 @@
+{
+  "usingComponents": {
+    "van-cell": "../../miniprogram_npm/@vant/weapp/cell/index",
+    "van-cell-group": "../../miniprogram_npm/@vant/weapp/cell-group/index",
+    "van-divider": "../../miniprogram_npm/@vant/weapp/divider/index",
+    "van-card": "../../miniprogram_npm/@vant/weapp/card/index",
+    "van-action-sheet": "../../miniprogram_npm/@vant/weapp/action-sheet/index",
+    "van-submit-bar": "../../miniprogram_npm/@vant/weapp/submit-bar/index",
+    "van-popup": "../../miniprogram_npm/@vant/weapp/popup/index",
+    "van-stepper": "../../miniprogram_npm/@vant/weapp/stepper/index",
+    "van-button": "../../miniprogram_npm/@vant/weapp/button/index",
+    "van-notify": "../../miniprogram_npm/@vant/weapp/notify/index",
+    "van-picker": "../../miniprogram_npm/@vant/weapp/picker/index",
+    "van-field": "../../miniprogram_npm/@vant/weapp/field/index",
+    "van-notice-bar": "../../miniprogram_npm/@vant/weapp/notice-bar/index"
+
+  }
+}

@@ -1,3 +1,19 @@
-{
+{ 
+  "usingComponents":{
+    "van-card": "../../miniprogram_npm/@vant/weapp/card/index",
+    "van-stepper": "../../miniprogram_npm/@vant/weapp/stepper/index",
+    "van-divider": "../../miniprogram_npm/@vant/weapp/divider/index",
+    "van-checkbox": "../../miniprogram_npm/@vant/weapp/checkbox/index",
+    "van-checkbox-group": "../../miniprogram_npm/@vant/weapp/checkbox-group/index",
+    "van-submit-bar": "../../miniprogram_npm/@vant/weapp/submit-bar/index",
+    "van-empty": "../../miniprogram_npm/@vant/weapp/empty/index",
+    "van-button": "../../miniprogram_npm/@vant/weapp/button/index",
+    "van-swipe-cell": "../../miniprogram_npm/@vant/weapp/swipe-cell/index",
+    "van-notify": "../../miniprogram_npm/@vant/weapp/notify/index",
+    "van-notice-bar": "../../miniprogram_npm/@vant/weapp/notice-bar/index"
+   
+  },
+
+  
   "navigationBarTitleText":"购物车"
 }

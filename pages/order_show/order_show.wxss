@@ -1,0 +1,25 @@
+/* pages/order_show/order_show.wxss */
+
+.van-cell{
+    padding-bottom: 0!important;
+    padding-top: 0!important;
+}
+/* .submit_button{
+    float: right!important;
+    width: 200rpx!important; */
+    /* margin:  6rpx 0 6rpx 0 !important; */  
+/* } */
+.text_left{
+    font-size: 24rpx;
+    padding-top: 12rpx;
+    padding-bottom: 12rpx;
+    color: #969799;
+
+
+}
+.text_right{
+    font-size: 24rpx;
+    padding-top: 12rpx;
+    padding-bottom: 12rpx;
+    color:#dc3545;
+}

@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "van-cell": "../../miniprogram_npm/@vant/weapp/cell/index",
+    "van-cell-group": "../../miniprogram_npm/@vant/weapp/cell-group/index",
+    "van-card": "../../miniprogram_npm/@vant/weapp/card/index",
+    "van-button": "../../miniprogram_npm/@vant/weapp/button/index",
+    "van-divider": "../../miniprogram_npm/@vant/weapp/divider/index",
+    "van-dialog": "../../miniprogram_npm/@vant/weapp/dialog/index",
+    "van-notify": "../../miniprogram_npm/@vant/weapp/notify/index"
+  },
+  "onReachBottomDistance":200,
+  "navigationBarTitleText":"订单列表"
+}

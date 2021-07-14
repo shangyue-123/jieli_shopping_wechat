@@ -1,0 +1,19 @@
+{
+  "usingComponents": {
+    "van-dropdown-menu": "../../miniprogram_npm/@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "../../miniprogram_npm/@vant/weapp/dropdown-item/index",
+    "van-collapse": "../../miniprogram_npm/@vant/weapp/collapse/index",
+    "van-collapse-item": "../../miniprogram_npm/@vant/weapp/collapse-item/index",
+    "van-cell": "../../miniprogram_npm/@vant/weapp/cell/index",
+    "van-cell-group": "../../miniprogram_npm/@vant/weapp/cell-group/index",
+    "van-button": "../../miniprogram_npm/@vant/weapp/button/index",
+    "van-tag": "../../miniprogram_npm/@vant/weapp/tag/index",
+    "van-toast": "../../miniprogram_npm/@vant/weapp/toast/index",
+    "van-notify": "../../miniprogram_npm/@vant/weapp/notify/index",
+    "van-icon": "../../miniprogram_npm/@vant/weapp/icon/index"
+
+  },
+
+  "navigationBarTitleText":"订单管理"
+}
+

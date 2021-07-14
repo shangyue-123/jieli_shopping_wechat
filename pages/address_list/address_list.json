@@ -1,0 +1,13 @@
+{
+    "usingComponents": {
+        "van-cell": "../../miniprogram_npm/@vant/weapp/cell/index",
+        "van-cell-group": "../../miniprogram_npm/@vant/weapp/cell-group/index",
+        "van-divider": "../../miniprogram_npm/@vant/weapp/divider/index",
+        "van-icon": "../../miniprogram_npm/@vant/weapp/icon/index",
+        "van-button": "../../miniprogram_npm/@vant/weapp/button/index",
+        "van-notify": "../../miniprogram_npm/@vant/weapp/notify/index",
+        "van-dialog": "../../miniprogram_npm/@vant/weapp/dialog/index",
+        "van-swipe-cell": "../../miniprogram_npm/@vant/weapp/swipe-cell/index"
+    },
+    "navigationBarTitleText":"收件信息"
+}

@@ -1,0 +1,18 @@
+/* pages/merchant_order/merchant_order.wxss */
+.van-collapse-item__content{
+    padding-top: 0!important;
+}
+
+/* .van-button{
+    float: right!important;
+    width: 250rpx!important; */
+    /* margin:  6rpx 0 6rpx 0 !important; */  
+/* } */
+
+.van-tag{
+    margin-left: 8rpx!important;
+}
+
+/* .collapse-item-index--van-cell{
+    background-color: brown!important;
+} */

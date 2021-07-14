@@ -1,0 +1,88 @@
+<!--pages/goods_details/goods_details.wxml-->
+<!-- <text>pages/goods_details/goods_details.wxml</text> -->
+
+<!-- 商品图片轮播 -->
+<view 
+class="page-section page-section-spacing swiper" 
+style="height:700rpx"
+>
+  <swiper 
+  indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" 
+  interval="{{interval}}" 
+  duration="{{duration}}"
+  style="height:100%"
+  >
+    <block 
+    wx:for="{{goods_detail_image}}" 
+    wx:key="*this"  
+    >
+      <swiper-item>
+        <image 
+        src="{{item}}" 
+        mode="scaleToFill"
+        style="width:100%;height:100%"
+        />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!-- 商品信息 -->
+<van-cell-group >
+  <van-cell label="销量:{{goods_dic.goods_sell_volume}}">
+    <view slot="title">
+      <text style="font-size: 40rpx;">{{goods_dic.goods_name}}</text>
+    </view>
+  </van-cell>
+  <van-cell>
+    <van-button type="danger"  size="small" disabled='{{item.button_disabled}}' bindtap="add_cart" id="{{goods_dic.id}}">加入购物车</van-button>
+    <view slot="title"> 
+      <block wx:if="{{goods_dic.preferential_price_boolean}}">
+        <text>
+          <text style="font-size:26rpx;color:#EE0A24">₩ </text>
+          <text style="font-weight: bold;font-size: 40rpx;color:#EE0A24">{{goods_dic.preferential_price}}</text>
+        </text>
+        <text style="font-size:26rpx;color:#969799;text-decoration:line-through">
+          <text style="margin-left:10rpx">₩ </text>
+          <text >{{goods_dic.goods_sell_price}}</text>
+        </text> 
+      </block> 
+      <block wx:else>
+        <text>
+          <text style="font-size:26rpx;color:#EE0A24">₩ </text>
+          <text style="font-weight: bold;font-size: 40rpx;color:#EE0A24">{{goods_dic.goods_sell_price}}</text>
+        </text>
+      </block> 
+    </view>
+  </van-cell>
+</van-cell-group>
+
+<!-- 商品详情 -->
+<van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tab title="商品详情">
+    <van-cell-group >
+      <van-cell title="商品描述:" label="{{goods_detail_dic.goods_introduction}}" />
+    </van-cell-group>
+  </van-tab>
+  <!-- 商品评价 -->
+  <van-tab title="评价(开发中)" disabled>开发中.....</van-tab>
+</van-tabs>
+
+
+
+<!-- 弹出框 -->
+<van-dialog
+  use-slot
+  title="请先授权登陆"
+  show="{{ dialog_show }}"
+  show-cancel-button
+  confirm-button-open-type="getUserInfo"
+  confirmButtonText="授权"
+  bind:close="dialog_close"
+  bind:getuserinfo="bindGetUserInfo"
+>
+</van-dialog>
+
+<!-- 轻提示 -->
+<van-toast id="van-toast" />

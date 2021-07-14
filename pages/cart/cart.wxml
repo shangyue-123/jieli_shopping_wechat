@@ -1,2 +1,136 @@
 <!--pages/cart/cart.wxml-->
-<text>pages/cart/cart.wxml</text>
+<!-- 
+<van-notice-bar
+  left-icon="volume-o"
+  text="汤圆可直接下单预定，亲故玛特将会在25号，26号陆续送到您手中，祝您元宵节快乐！"
+/> -->
+<!-- 多选组 -->
+<van-checkbox-group value="{{ result }}" bind:change="select_change">
+<!-- 空状态栏 -->
+<van-empty description="请点击下方按钮登录后查看购物车" style="display:{{show_empty}}">
+  <van-button  bindtap="getUserProfile"   round type="danger" class="bottom-button">
+    点击登录
+  </van-button>
+</van-empty>
+  <!-- 循环显示特价商品 -->
+  <block wx:for="{{goods_preferential}}" wx:key="unique">
+    <van-swipe-cell right-width="{{ 65 }}">
+    <view style="display:{{item.display}}">
+      <!-- 左侧多选按钮 -->
+      <view class="checkbox" >
+        <van-checkbox name="{{ item.goods_id }}" icon-size="16px"></van-checkbox>
+      </view>
+      <!-- 右侧商品卡片 -->
+      <view class="card" >
+      <van-card 
+        tag="特价"
+        num="{{ item.cart_goods_quantity }}"
+        price="{{item.goods_preferential_price}}"
+        title="{{item.goods_name}}"
+        thumb="{{ item.goods_image }}"
+        origin-price="{{item.goods_sell_price}}"
+        slot="content"
+        lazy-load="true"
+      >
+      <view slot='desc' style="color:#646566">
+          <view>库存:{{ item.goods_inventory }}</view>
+      </view>
+
+        <view slot="footer">
+          <van-stepper value="{{ item.cart_goods_quantity }}" integer  bind:change="cart_goods_quantity_change" id="{{item.goods_id}}" max="{{item.goods_inventory}}" min="0"/>
+          <van-divider custom-style="margin-top:0px; margin-bottom:0px"/>
+        </view>
+      </van-card>
+    </view>
+  </view>
+  <van-button custom-style="height:100%"  slot="right" type="danger" bind:click="delete" data-goods_id="{{ item.goods_id }}">删除</van-button>
+  </van-swipe-cell>
+  </block>
+  <!-- 遍历商品 -->
+  <block wx:for="{{goods_dic_list}}" wx:key="unique">
+    <van-swipe-cell right-width="{{ 65 }}">
+    <view slot="" style="display:{{item.display}}">
+      <!-- 左侧多选按钮 -->
+      <view class="checkbox">
+        <van-checkbox name="{{ item.goods_id }}" icon-size="16px"></van-checkbox>
+      </view>
+      <!-- 右侧商品卡片 -->
+      <view class="card" >
+        <van-card
+        num="{{ item.cart_goods_quantity }}"
+        price="{{ item.goods_sell_price }}"
+        title="{{item.goods_name}}"
+        thumb="{{ item.goods_image }}"
+        slot="content"
+        lazy-load="true"
+        >
+
+        <view slot='desc' style="color:#646566">
+          <view>库存:{{ item.goods_inventory }}</view>
+        </view>
+
+        <!-- 步进器 -->
+        <view slot="footer">
+          <van-stepper value="{{ item.cart_goods_quantity }}" integer  bind:change="cart_goods_quantity_change" id="{{item.goods_id}}" max="{{item.goods_inventory}}" min="0"/>
+          <van-divider custom-style="margin-top:0px; margin-bottom:0px"/>
+        </view>
+        </van-card>
+      </view>
+    </view>
+    <van-button custom-style="height:100%"  slot="right" type="danger" bind:click="delete" data-goods_id="{{ item.goods_id }}">删除</van-button>
+    </van-swipe-cell>
+  </block>
+</van-checkbox-group>
+
+
+
+
+<van-submit-bar
+  price="{{ sum }}"
+  button-text="去结算"
+  bind:submit="order_submit"
+  tip="{{ true }}"
+>
+  <van-tag type="primary">
+    <van-checkbox value="{{ all_change }}" bind:change="all_change">全选</van-checkbox>
+  </van-tag>
+
+  <view slot="tip">
+    <view>韩国湖南大学附近满10000起送，不满运费1000</view>
+    <view>其他地区满30000包邮，不满运费4000</view>
+  </view>
+  
+</van-submit-bar>
+
+
+<!-- 轻提示 -->
+<van-toast id="van-toast" />
+<!-- 通知 -->
+<van-notify id="van-notify" />
+
+
+
+<view style="height:12rem"></view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

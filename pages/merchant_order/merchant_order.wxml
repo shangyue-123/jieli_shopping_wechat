@@ -1,0 +1,72 @@
+<!--pages/merchant_order/merchant_order.wxml-->
+<!-- <text>pages/merchant_order/merchant_order.wxml</text> -->
+
+<van-dropdown-menu>
+  <van-dropdown-item value="{{ order_status }}" options="{{ order_status_list }}" bind:change="order_status_select" />
+  <van-dropdown-item value="{{ expected_time_value }}" options="{{ expected_time }}" />
+</van-dropdown-menu>
+
+<van-collapse value="{{ activeNames }}" bind:change="onChange" bind:open="order_look_change">
+<block wx:for="{{ order_list }}" wx:key="unique">
+  <van-collapse-item  value="{{item.order_status_text}}"  name="{{index}}" >
+    <view slot="title">
+      <text>用户名：{{item.user_name}}</text>
+      <van-tag type="danger" round>{{item.order_tag}}</van-tag>
+      <block wx:if="{{item.payment_method == 0}}">
+        <van-tag type="warning" round>{{item.payment_method_text}}</van-tag>
+      </block>
+    </view>
+    <view slot="">
+      <van-cell-group title="商品信息:">
+        <van-cell  title="商品详情：" center use-label-slot>
+          <view slot="label" >
+            <block wx:for="{{item.goods_json}}" wx:for-item="goods_json"  wx:key="unique">
+              <view >{{goods_json.goods_name}}*{{goods_json.cart_goods_quantity}}</view>
+            </block>
+          </view>
+        </van-cell> 
+        <van-cell  title="备注：" use-label-slot>
+          <view slot="label">{{item.order_remark}} </view>
+        </van-cell> 
+      </van-cell-group>
+        <van-cell-group title="收件人信息:">
+            <van-cell title="收件人姓名：" value="{{item.consignee_name}}" />
+            <van-cell title="收件人电话：" value="{{item.consignee_number}}">
+              <van-icon slot='right-icon'  name="{{icon}}" size="50rpx" custom-style="padding-left:20rpx" bind:click="call_phone" data-consignee_number="{{item.consignee_number}}" />
+            </van-cell>
+            <van-cell title="收件人地址：" value="{{item.consignee_address}}" />
+            <van-cell title="期望收货时间：" value="{{item.expected_time}}" />
+        </van-cell-group>
+        <van-cell-group title="订单信息:">
+            <van-cell title="订单编号：" value="{{item.id}}" />
+            <van-cell title="订单创建时间：" value="{{item.order_time}}" />
+            <van-cell title="支付方式：" value="{{item.payment_method_text}}" />
+            <van-cell title="支付金额：" value="{{item.payment_amount}}" />
+            <van-cell title="订单状态：" value="{{item.order_status_text}}" />
+        </van-cell-group>
+    
+        <view slot="title" class="select_button">
+            <!-- 右侧按钮 -->
+            <van-button type="info"   bind:click="button_right" data-order_status="{{item.order_status}}" data-order_id="{{item.id}}" plain custom-style="margin: 6rpx 0 6rpx 0;display:{{item.button_right_show}};float: right;width: 250rpx">{{item.button_right}}</van-button>
+
+            <!-- 左侧按钮 -->
+            <van-button type="danger" data-order_status="{{item.order_status}}"
+            data-order_id="{{item.id}}" bind:click="button_left" plain  custom-style="  margin: 6rpx 12rpx 6rpx 0;display:{{item.button_left_show}};float: right;width: 250rpx" >{{item.button_left}}</van-button>
+        </view>
+
+
+    </view>
+  </van-collapse-item>
+</block>
+  
+</van-collapse>
+
+<van-button type="danger" block custom-style="position: fixed;bottom: 0;width: 100%;display:{{next_page_show}}" bind:click="next_page">继续加载</van-button>
+
+
+
+
+<!-- 轻提示 -->
+<van-toast id="van-toast" />
+<view style="height:5rem"></view>
+<van-notify id="van-notify" />

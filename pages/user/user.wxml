@@ -1,2 +1,72 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<!-- <text>pages/user/user.wxml</text> -->
+<!-- <van-cell title="单元格" value="内容" size="large" label="描述信息" /> -->
+<!-- <van-skeleton title avatar row="3" /> -->
+<view style="display: flex;padding: 0 16px">
+    <view style="flex-shrink: 0;margin-right: 16px">
+        <van-image
+        round
+        width="32px"
+        height="32px"
+        src="{{avatarUrl}}"
+        
+        />
+    </view>
+    <view style="flex: 1;">
+        <text style="padding-top: 16px;">-{{nickName}}-</text>
+    </view>
+    <van-button bindtap="getUserProfile" size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" style="visibility:{{button_UserInfo}}; margin-right:15rpx">
+    授权登录
+    </van-button>
+    <van-button color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36))" size="small" style="visibility:{{button_show}}; " bind:click="toMerchant" >
+    商户管理
+    </van-button>
+    
+
+</view>
+<van-divider  customStyle="margin-top:0;margin-bottom:0"/>
+    <van-cell
+    is-link
+    title="地址管理"
+    link-type="navigateTo"
+    url="../address_list/address_list"
+    />
+<van-divider  customStyle="margin-top:0"/>
+
+<!-- 订单管理 -->
+<van-grid clickable column-num="4">
+    <block wx:for="{{order_manage}}" wx:key="unique">
+    <van-grid-item
+        icon="{{item.icon}}"
+        link-type="{{item.link_type}}"
+        url="{{item.url}}"
+        text="{{item.text}}"
+        badge="{{item.badge}}"
+        link-type="navigateTo"
+    />
+    </block>
+</van-grid>
+
+<van-divider/>
+
+<van-grid clickable column-num="4">
+    <block wx:for="{{discounts}}" wx:key="unique">
+    <van-grid-item
+        icon="{{item.icon}}"
+        link-type="{{item.link_type}}"
+        url="{{item.url}}"
+        text="{{item.text}}"
+    />
+    </block>
+</van-grid>
+
+
+<van-divider/>
+
+<!-- <open-data type="userAvatarUrl"></open-data>
+<open-data type="userNickName"></open-data> -->
+<!-- 需要使用 button 来授权登录 -->
+<!-- <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+<view wx:else>请升级微信版本</view> -->
+
+<view style="height:3rem"></view>

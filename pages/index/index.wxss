@@ -29,4 +29,10 @@
   margin: 0 2.5px;
   color: #ee0a24;
 }
-
+.van-card__desc{
+  margin-top: 17px;
+}
+.cart_image{
+  width: 20px;
+  height: 20px;
+}

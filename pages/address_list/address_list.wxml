@@ -1,0 +1,50 @@
+<!--pages/address_list/address_list.wxml-->
+<!-- <text>pages/address_list/address_list.wxml</text> -->
+<van-swipe-cell
+  id="swipe-cell"
+  right-width="{{ 65 }}"
+  async-close
+>
+<block wx:for="{{address_default}}" wx:key="unique">
+    <van-cell title="默认收件信息："  center use-label-slot >
+        
+        <view slot="label" bindtap="address_select" id="{{item.id}}">
+            <view>姓名：<text>{{item.consignee_name}}</text></view>
+            <view>电话：<text>{{item.consignee_number}}</text></view>
+            <view>地址：<text>{{item.consignee_address}}</text></view>
+        </view>
+        <van-icon size="20px" slot="right-icon" name="{{address_icon}}" bind:click="address_change" id="{{item.id}}" />
+    </van-cell>
+    <van-button id="button" custom-style="height:100%;"  slot="right" type="danger" bind:click="delete" data-consignee_id="{{ item.id }}">删除</van-button>
+</block>
+</van-swipe-cell>
+
+
+
+<van-cell-group title="收件信息:">
+    <block wx:for="{{address}}" wx:key="unique">
+    <van-swipe-cell
+    id="swipe-cell"
+    right-width="{{ 65 }}"
+    async-close
+    >
+    <van-cell   center use-label-slot > 
+        <view slot="label" bindtap="address_select" id="{{item.id}}">
+            <view>姓名：<text>{{item.consignee_name}}</text></view>
+            <view>电话：<text>{{item.consignee_number}}</text></view>
+            <view>地址：<text>{{item.consignee_address}}</text></view>
+        </view>
+        <van-icon size="20px" slot="right-icon" bind:click="address_change" name="{{address_icon}}" id="{{item.id}}" />
+    </van-cell>
+    <van-button custom-style="height:100%"  slot="right" type="danger" bind:click="delete" data-consignee_id="{{ item.id }}">删除</van-button>
+    </van-swipe-cell>
+</block>
+</van-cell-group>
+
+
+
+<van-button id='new_address' block type="danger" bind:click="address_new">新建收件信息</van-button>
+
+
+<!-- 弹窗 -->
+<van-dialog id="van-dialog" />
