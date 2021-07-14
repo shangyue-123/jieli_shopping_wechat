@@ -1,5 +1,6 @@
 {
     "description": "项目配置文件",
+    "cloudfunctionRoot": "functions/",
     "packOptions": {
         "ignore": []
     },
@@ -12,7 +13,7 @@
         "minified": true,
         "newFeature": false,
         "coverView": true,
-        "nodeModules": true,
+        "nodeModules": false,
         "autoAudits": false,
         "showShadowRootInWxmlPanel": true,
         "scopeDataCheck": false,
@@ -21,26 +22,23 @@
         "checkSiteMap": true,
         "uploadWithSourceMap": true,
         "compileHotReLoad": false,
-        "useMultiFrameRuntime": false,
+        "useMultiFrameRuntime": true,
         "useApiHook": true,
+        "useApiHostProcess": true,
         "babelSetting": {
             "ignore": [],
             "disablePlugins": [],
             "outputPath": ""
         },
-        "enableEngineNative": false,
-        "bundle": false,
         "useIsolateContext": true,
-        "useCompilerModule": true,
-        "userConfirmedUseCompilerModuleSwitch": false,
         "userConfirmedBundleSwitch": false,
         "packNpmManually": false,
         "packNpmRelationList": [],
-        "minifyWXSS": true
+        "minifyWXSS": true,
+        "showES6CompileOption": false
     },
-    "compileType": "miniprogram",
     "libVersion": "2.13.1",
-    "appid": "wx9f44a57cdc3b1156",
+    "appid": "wx501a6505f6bb0650",
     "projectname": "miniprogram-2",
     "debugOptions": {
         "hidedInDevtools": []
@@ -49,24 +47,26 @@
     "isGameTourist": false,
     "simulatorType": "wechat",
     "simulatorPluginLibVersion": {},
+    "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+    "compileType": "miniprogram",
     "condition": {
-        "search": {
-            "list": []
-        },
-        "conversation": {
+        "plugin": {
             "list": []
         },
         "game": {
-            "list": []
-        },
-        "plugin": {
             "list": []
         },
         "gamePlugin": {
             "list": []
         },
         "miniprogram": {
-            "list": []
+            "list": [
+                {
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "scene": null
+                }
+            ]
         }
     }
 }

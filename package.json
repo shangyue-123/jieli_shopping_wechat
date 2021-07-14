@@ -9,7 +9,9 @@
   "license": "ISC",
   "dependencies": {
     "@vant/weapp": "^1.6.1",
-    "miniprogram-recycle-view": "^0.1.5"
+    "miniprogram-recycle-view": "^0.1.5",
+    "tenpay": "^2.1.18",
+    "wx-server-sdk": "^2.3.2"
   },
   "description": ""
 }
