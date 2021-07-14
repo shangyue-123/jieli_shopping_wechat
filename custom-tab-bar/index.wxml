@@ -1,0 +1,24 @@
+<!--components/Tabbar/index.wxml-->
+<!-- <text>components/Tabbar/index.wxml</text> -->
+<van-tabbar active="{{ active }}" bind:change="onChange" >
+  <van-tabbar-item wx:for="{{list}}" wx:key="index">
+    <block wx:if="{{index==2}}">
+      <view slot="icon">
+        <van-button  icon="{{ item.icon }}"  size="25px" block open-type="contact" custom-style="height:25px;wigth:25px;border-style:none;  margin-top:4px" show-message-card>
+        <text style="font-size:12px;width:36px;height:12px;">{{item.text}}</text>
+        </van-button> 
+      </view>
+      <view slot="icon-active">
+        <van-button  icon="{{ item.icon }}" size="25px" block open-type="contact" custom-style="height:25px;wigth:25px;border-style:none;margin-botton:4px" show-message-card>
+          <text style="font-size:12px;width:36px;height:12px;">{{item.text}}</text>
+        </van-button>
+      </view>
+    </block>
+    <block wx:else>
+      <van-icon slot="icon" info="{{item.info}}" name="{{ item.icon }}" size="25px"/>
+      <van-icon slot="icon-active" info="{{item.info}}" name="{{ item.icon }}" size="25px"/>
+      {{item.text}}
+    </block>
+    
+  </van-tabbar-item>
+</van-tabbar>
